@@ -1,42 +1,104 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>3D WebAR Example</title>
-  <!-- A-Frame or WebAR 관련 라이브러리 -->
-  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-  <script src="webar-slam-1.6.js"></script>
-  <style>
-    body, html { margin: 0; padding: 0; height: 100%; }
-    #webar-container { width: 100%; height: 100%; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+<meta name="description" content="AR Code mw3QkGasX">
+<meta name="keywords" content="ar, code, mw3QkGasX, ar code, arcode, ar-code">
+<meta name="robots" content="noindex">
+<title>AR Code</title> 
+
+<!-- Model Viewer -->
+<script type="module" src="ar-render-custom13/dist/model-viewer.min.js"></script>
+
+<!-- CSS -->
+<link href="static/css/webar-loading.css" rel="stylesheet">
+<link href="static/css/webarslam4.css" rel="stylesheet">
 </head>
 <body>
 
-  <!-- WebAR/3D 렌더링 영역 -->
-  <div id="webar-container"></div>
+<!-- AR 렌더링 컨테이너 -->
+<div id="container">
+    <canvas width="1536" height="756"></canvas>
+    <div>
+        <canvas data-engine="three.js r158dev" width="1920" height="945" style="display: block; width: 1536px; height: 756px;"></canvas>
+    </div>
+</div>
 
-  <!-- 안전하게 JS 실행 -->
-  <script>
-    // DOM이 모두 로드된 후 실행
-    document.addEventListener('DOMContentLoaded', () => {
+<!-- 로딩 UI -->
+<div id="loadingIcon" style="display: flex;">
+    <div id="loadingcontainer">
+        <div class="loading"></div>
+        <div id="detectionText" class="visible">AR 환경 감지</div>
+    </div>
+</div>
 
-      // DOM 요소 존재 확인
-      const container = document.getElementById('webar-container');
-      if (!container) {
-        console.error('#webar-container 요소를 찾을 수 없습니다.');
+<div id="infotext">AR을 위해 표면을 가리키세요</div>
+
+<div id="linkbutton">
+    <span id="linktext" class="text-content">
+        <strong>Create Your Own AR Codes – Your Link Here</strong><br>
+        <span id="linkurl">https://ar-code.com</span>
+    </span>
+    <span>
+        <a href="https://ar-code.com" id="gotext"><strong>방문</strong></a>
+    </span>
+</div>
+
+<div id="closingbutton"><strong>X</strong></div>
+
+<div id="immersivear">
+    <div class="button-container">
+        <model-viewer ar src="https://ar-code.com/files/AR-Code-1670830082338.glb" 
+                      ar-modes="webxr" ar-scale="auto" bounds="tight" enable-pan 
+                      reveal="manual" ar-status="not-presenting">
+            <button id="buttonar" slot="ar-button">
+                <strong>WebXR mode</strong>
+            </button>
+        </model-viewer>
+    </div>
+</div>
+
+<!-- 데이터 변수 -->
+<script>
+var modelid = "AR-Code-1670830082338";
+var arcodeid = "mw3QkGasX";
+var bannerlink = "https://ar-code.com";
+</script>
+
+<!-- WebAR Slam JS -->
+<script type="module">
+document.addEventListener('DOMContentLoaded', () => {
+    // DOM 요소 안전하게 가져오기
+    const container = document.getElementById('container');
+    if (!container) {
+        console.error('#container 요소를 찾을 수 없습니다.');
         return;
-      }
+    }
 
-      // 기존 main() 함수 호출 (webar-slam-1.6.js 내부)
-      try {
-        main(container); // main() 함수가 container를 파라미터로 받는 경우
-      } catch (err) {
+    // webar-slam 초기화 시도
+    try {
+        // main() 함수가 container를 파라미터로 받도록 수정한 경우
+        if (typeof main === 'function') {
+            main(container);
+        } else {
+            console.warn('main() 함수가 정의되어 있지 않습니다.');
+        }
+    } catch (err) {
         console.error('WebAR 초기화 중 오류 발생:', err);
-      }
+    }
+});
+</script>
 
-    });
-  </script>
+<!-- 외부 JS (Cloudflare beacon) -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+        integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
+        data-cf-beacon='{"rayId":"96bb5bd1ac48fccb","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"version":"2025.7.0","token":"eaf6448ecc3f4348a6ccb59ca8dae526"}'
+        crossorigin="anonymous">
+</script>
+
+<!-- 기존 WebAR Slam JS -->
+<script type="module" src="static/webar-slam-1.6.js"></script>
 
 </body>
 </html>
