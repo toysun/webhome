@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>3D WebAR Example</title>
+  <!-- A-Frame or WebAR 관련 라이브러리 -->
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <script src="webar-slam-1.6.js"></script>
+  <style>
+    body, html { margin: 0; padding: 0; height: 100%; }
+    #webar-container { width: 100%; height: 100%; }
+  </style>
+</head>
+<body>
+
+  <!-- WebAR/3D 렌더링 영역 -->
+  <div id="webar-container"></div>
+
+  <!-- 안전하게 JS 실행 -->
+  <script>
+    // DOM이 모두 로드된 후 실행
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // DOM 요소 존재 확인
+      const container = document.getElementById('webar-container');
+      if (!container) {
+        console.error('#webar-container 요소를 찾을 수 없습니다.');
+        return;
+      }
+
+      // 기존 main() 함수 호출 (webar-slam-1.6.js 내부)
+      try {
+        main(container); // main() 함수가 container를 파라미터로 받는 경우
+      } catch (err) {
+        console.error('WebAR 초기화 중 오류 발생:', err);
+      }
+
+    });
+  </script>
+
+</body>
+</html>
