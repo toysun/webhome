@@ -175,6 +175,7 @@
             <a-entity
                 id="joayong-model"
                 rotation="20 -30 0"
+                animation="property: scale; to: 0.7 0.7 0.7; loop: false; dur: 3000"
                 animation-mixer
                 selective-click>
             </a-entity>
@@ -208,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const quizModal = document.getElementById('quiz-modal');
 
     const joayongPos = {
-        earth:     { name: '지구', lat: 37.489121, lng: 126.955418, model: './models/joayong-rocket-fire.glb', scale: '0.7 0.7 0.7', position: '-1.5 1 -4' }, 
+        earth:     { name: '지구', lat: 37.489121, lng: 126.955418, model: './models/joayong-rocket-fire.glb', scale: '0 0 0', position: '-1.5 1 -4' }, 
         mars: { name: '화성', lat: 37.4895, lng: 126.9556, model: './models/joayong-cute-ufo.glb', scale: '0.5 0.5 0.5', position: '-0.5 1.2 -4' },
         jupiter:   { name: '목성', lat: 37.4893,   lng: 126.9561, model: './models/joayong-train-fire.glb', scale: '0.7 0.7 0.7', position: '-0.5 1.5 -4' },
         saturn:  { name: '토성', lat: 37.488928, lng: 126.956250, model: './models/joayong-spaceshuttle.glb', scale: '0.5 0.5 0.5', position: '-0.8 1.7 -4' },
