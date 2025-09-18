@@ -11,8 +11,9 @@
     <title>AR 조야용을 찾아라</title>
       <!-- Pretendard Font -->
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" />
+    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <!--script src="./js/aframe150.js"></script-->
 
-    <script src="./js/aframe150.js"></script>
     <script src="./js/aframe-ar.js"></script>
     <script src="./js/aframe-extras.min.js"></script>
 
@@ -162,6 +163,7 @@
             emitevents="true" 
             cursor="rayOrigin: mouse"
             raycaster="objects: #joayong-model"
+           device-orientation-permission-ui="enabled: false"
         >
           <a-entity scale="0 0 0" animation="property: scale; to: 1 1 1; loop: false; dur: 3000">
             <a-entity
